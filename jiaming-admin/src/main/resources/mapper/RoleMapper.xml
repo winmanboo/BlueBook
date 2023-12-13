@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.deepcode.jiaming.admin.mapper.RoleMapper">
+
+    <sql id="Vo_Column">
+        id, name, code, status, create_time, remark
+    </sql>
+
+    <select id="pageList" resultType="com.deepcode.jiaming.admin.vo.RoleVo">
+        select
+        <include refid="Vo_Column"/>
+        from sys_role
+        where deleted = 0
+        <if test="role.name != null and role.name != ''">
+            and name = #{role.name}
+        </if>
+        <if test="role.code != null and role.code != ''">
+            and code = #{role.code}
+        </if>
+        <if test="role.status != null">
+            and status = #{role.status}
+        </if>
+        <if test="role.startTime != null and role.startTime != ''">
+            and create_time &gt;= #{role.startTime}
+        </if>
+        <if test="role.endTime != null and role.endTime != ''">
+            and create_time &lt;= #{role.endTime}
+        </if>
+    </select>
+    <select id="listVo" resultType="com.deepcode.jiaming.admin.vo.RoleVo">
+        select
+        <include refid="Vo_Column"/>
+        from sys_role
+        where deleted = 0
+    </select>
+</mapper>
