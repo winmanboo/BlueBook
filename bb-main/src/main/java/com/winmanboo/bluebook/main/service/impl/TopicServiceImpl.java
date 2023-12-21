@@ -7,8 +7,8 @@ import com.winmanboo.bluebook.main.entity.Topic;
 import com.winmanboo.bluebook.main.mapper.TopicMapper;
 import com.winmanboo.bluebook.main.service.TopicService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.winmanboo.bluebook.main.vo.PostsDetailsVO;
-import com.winmanboo.bluebook.main.vo.PostsVO;
+import com.winmanboo.bluebook.main.vo.TopicDetailsVO;
+import com.winmanboo.bluebook.main.vo.TopicVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,13 +25,13 @@ import org.springframework.stereotype.Service;
 public class TopicServiceImpl extends ServiceImpl<TopicMapper, Topic> implements TopicService {
 
     @Override
-    public PageList<PostsVO> pageVoByCategoryId(PageParam pageParam, Long categoryId) {
-        IPage<PostsVO> page = baseMapper.pageList(pageParam.toPage(), categoryId);
+    public PageList<TopicVO> pageVoByCategoryId(PageParam pageParam, Long categoryId) {
+        IPage<TopicVO> page = baseMapper.pageList(pageParam.toPage(), categoryId);
         return PageList.turnTo(page);
     }
 
     @Override
-    public PostsDetailsVO detailsByPostId(Long postId) {
+    public TopicDetailsVO detailsByPostId(Long postId) {
         return baseMapper.detailsByPostId(postId);
     }
 }

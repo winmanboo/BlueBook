@@ -26,13 +26,13 @@
                category_id
     </sql>
 
-    <select id="pageList" resultType="com.winmanboo.bluebook.main.vo.PostsVO">
+    <select id="pageList" resultType="com.winmanboo.bluebook.main.vo.TopicVO">
         select id, banners, subject, type, likes_number, post_username, post_avatar
         from topic
         where category_id = #{categoryId}
           and permission_type = 0
     </select>
-    <select id="detailsByPostId" resultType="com.winmanboo.bluebook.main.vo.PostsDetailsVO">
+    <select id="detailsByPostId" resultType="com.winmanboo.bluebook.main.vo.TopicDetailsVO">
         select id,
                information,
                banners,

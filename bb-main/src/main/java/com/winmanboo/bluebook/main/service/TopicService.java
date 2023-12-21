@@ -4,8 +4,8 @@ import com.winmanboo.bluebook.base.PageList;
 import com.winmanboo.bluebook.base.PageParam;
 import com.winmanboo.bluebook.main.entity.Topic;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.winmanboo.bluebook.main.vo.PostsDetailsVO;
-import com.winmanboo.bluebook.main.vo.PostsVO;
+import com.winmanboo.bluebook.main.vo.TopicDetailsVO;
+import com.winmanboo.bluebook.main.vo.TopicVO;
 
 /**
  * <p>
@@ -24,7 +24,7 @@ public interface TopicService extends IService<Topic> {
      * @param categoryId 分类id
      * @return
      */
-    PageList<PostsVO> pageVoByCategoryId(PageParam pageParam, Long categoryId);
+    PageList<TopicVO> pageVoByCategoryId(PageParam pageParam, Long categoryId);
 
     /**
      * 根据 postId 查询详情
@@ -32,5 +32,5 @@ public interface TopicService extends IService<Topic> {
      * @param postId 帖子 id
      * @return 帖子详情
      */
-    PostsDetailsVO detailsByPostId(Long postId);
+    TopicDetailsVO detailsByPostId(Long postId);
 }

@@ -8,7 +8,7 @@ import lombok.Data;
  * @date 2023/12/13 22:26
  */
 @Data
-public class PostsVO {
+public class TopicVO {
     private Long id;
 
     @ApiModelProperty("封面")
@@ -20,9 +20,6 @@ public class PostsVO {
     @ApiModelProperty("点赞数量")
     private Integer likesNumber;
 
-    @ApiModelProperty("发布者用户名")
-    private String postUsername;
-
-    @ApiModelProperty("发布者头像")
-    private String postAvatar;
+    @ApiModelProperty("发布人id")
+    private Long postUid;
 }

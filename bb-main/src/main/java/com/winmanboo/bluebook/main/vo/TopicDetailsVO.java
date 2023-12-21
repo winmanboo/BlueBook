@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  * @date 2023/12/13 22:26
  */
 @Data
-public class PostsDetailsVO {
+public class TopicDetailsVO {
     private Long id;
 
     @ApiModelProperty("描述信息")
@@ -39,12 +39,6 @@ public class PostsDetailsVO {
 
     @ApiModelProperty("发布人id")
     private Long postUid;
-
-    @ApiModelProperty("发布者用户名")
-    private String postUsername;
-
-    @ApiModelProperty("发布者头像")
-    private String postAvatar;
 
     @ApiModelProperty("省份")
     private String province;
