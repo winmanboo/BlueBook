@@ -2,7 +2,7 @@ package com.winmanboo.bluebook.main.service;
 
 import com.winmanboo.bluebook.base.PageList;
 import com.winmanboo.bluebook.base.PageParam;
-import com.winmanboo.bluebook.main.entity.Posts;
+import com.winmanboo.bluebook.main.entity.Topic;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.winmanboo.bluebook.main.vo.PostsDetailsVO;
 import com.winmanboo.bluebook.main.vo.PostsVO;
@@ -15,7 +15,7 @@ import com.winmanboo.bluebook.main.vo.PostsVO;
  * @author winmanboo
  * @since 2023-12-13
  */
-public interface PostsService extends IService<Posts> {
+public interface TopicService extends IService<Topic> {
 
     /**
      * 根据类目 id 查询帖子分页列表

@@ -1,8 +1,7 @@
 package com.winmanboo.bluebook.main.mapper;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.winmanboo.bluebook.main.entity.Posts;
+import com.winmanboo.bluebook.main.entity.Topic;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.winmanboo.bluebook.main.vo.PostsDetailsVO;
 import com.winmanboo.bluebook.main.vo.PostsVO;
@@ -16,7 +15,7 @@ import org.apache.ibatis.annotations.Param;
  * @author winmanboo
  * @since 2023-12-13
  */
-public interface PostsMapper extends BaseMapper<Posts> {
+public interface TopicMapper extends BaseMapper<Topic> {
 
     /**
      * 帖子分页列表

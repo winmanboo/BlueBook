@@ -21,8 +21,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "Posts对象", description = "帖子表")
-public class Posts extends BaseEntity {
+@ApiModel(value = "Topic对象", description = "帖子表")
+public class Topic extends BaseEntity {
 
     @Serial
     private static final long serialVersionUID = 1L;

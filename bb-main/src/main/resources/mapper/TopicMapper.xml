@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.winmanboo.bluebook.main.mapper.PostsMapper">
+<mapper namespace="com.winmanboo.bluebook.main.mapper.TopicMapper">
 
     <sql id="Vo_Column">
            id,
@@ -28,7 +28,7 @@
 
     <select id="pageList" resultType="com.winmanboo.bluebook.main.vo.PostsVO">
         select id, banners, subject, type, likes_number, post_username, post_avatar
-        from posts
+        from topic
         where category_id = #{categoryId}
           and permission_type = 0
     </select>
@@ -51,7 +51,7 @@
                site,
                posted_time,
                top_comment_id
-        from posts
+        from topic
         where id = #{postId}
           and permission_type = 0
     </select>
