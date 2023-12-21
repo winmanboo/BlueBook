@@ -1,33 +1,16 @@
-package com.winmanboo.bluebook.main.entity;
+package com.winmanboo.bluebook.main.vo;
 
-import java.io.Serial;
-import java.time.LocalDateTime;
-
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.winmanboo.bluebook.base.BaseEntity;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+
+import java.time.LocalDateTime;
 
 /**
- * <p>
- * 帖子表
- * </p>
- *
  * @author winmanboo
- * @since 2023-12-13
+ * @date 2023/12/13 22:26
  */
 @Data
-@EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "Posts对象", description = "帖子表")
-public class Posts extends BaseEntity {
-
-    @Serial
-    private static final long serialVersionUID = 1L;
-
-    @TableId(value = "id", type = IdType.AUTO)
+public class PostsDetailsVO {
     private Long id;
 
     @ApiModelProperty("描述信息")
@@ -56,12 +39,6 @@ public class Posts extends BaseEntity {
 
     @ApiModelProperty("发布人id")
     private Long postUid;
-
-    @ApiModelProperty("发布者用户名")
-    private String postUsername;
-
-    @ApiModelProperty("发布者头像")
-    private String postAvatar;
 
     @ApiModelProperty("省份")
     private String province;
