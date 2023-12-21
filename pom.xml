@@ -10,21 +10,21 @@
         <version>3.0.7</version>
     </parent>
 
-    <groupId>com.deepcode.jiaming</groupId>
-    <artifactId>jiaming-cloud</artifactId>
+    <groupId>com.winmanboo.bluebook</groupId>
+    <artifactId>bluebook</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>jiaming-admin</module>
-        <module>jiaming-common</module>
-        <module>jiaming-gateway</module>
-        <module>jiaming-common/jiaming-common-core</module>
-        <module>jiaming-common/jiaming-spring-boot-starter-mybatis-plus</module>
-        <module>jiaming-common/jiaming-spring-boot-starter-redis</module>
-        <module>jiaming-common/jiaming-spring-boot-starter-security</module>
-        <module>jiaming-common/jiaming-spring-boot-starter-web</module>
-        <module>jiaming-uaa</module>
-        <module>jiaming-api</module>
+        <module>bb-admin</module>
+        <module>bb-common</module>
+        <module>bb-gateway</module>
+        <module>bb-common/bb-common-core</module>
+        <module>bb-common/bb-spring-boot-starter-mybatis-plus</module>
+        <module>bb-common/bb-spring-boot-starter-redis</module>
+        <module>bb-common/bb-spring-boot-starter-security</module>
+        <module>bb-common/bb-spring-boot-starter-web</module>
+        <module>bb-uaa</module>
+        <module>bb-api</module>
         <module>bb-main</module>
     </modules>
 
@@ -63,9 +63,9 @@
             </dependency>
 
             <dependency>
-                <groupId>com.deepcode.jiaming</groupId>
-                <artifactId>jiaming-spring-boot-starter-security</artifactId>
-                <version>${project.version}</version>
+                <groupId>com.winmanboo.bluebook</groupId>
+                <artifactId>bb-spring-boot-starter-security</artifactId>
+                <version>1.0-SNAPSHOT</version>
             </dependency>
 
             <dependency>
@@ -75,20 +75,20 @@
             </dependency>
 
             <dependency>
-                <groupId>com.deepcode.jiaming</groupId>
-                <artifactId>jiaming-spring-boot-starter-mybatis-plus</artifactId>
+                <groupId>com.winmanboo.bluebook</groupId>
+                <artifactId>bb-spring-boot-starter-mybatis-plus</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.deepcode.jiaming</groupId>
-                <artifactId>jiaming-spring-boot-starter-redis</artifactId>
+                <groupId>com.winmanboo.bluebook</groupId>
+                <artifactId>bb-spring-boot-starter-redis</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>com.deepcode.jiaming</groupId>
-                <artifactId>jiaming-spring-boot-starter-web</artifactId>
+                <groupId>com.winmanboo.bluebook</groupId>
+                <artifactId>bb-spring-boot-starter-web</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -111,8 +111,8 @@
             </dependency>
 
             <dependency>
-                <groupId>com.deepcode.jiaming</groupId>
-                <artifactId>jiaming-common-core</artifactId>
+                <groupId>com.winmanboo.bluebook</groupId>
+                <artifactId>bb-common-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

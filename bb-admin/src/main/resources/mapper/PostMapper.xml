@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.winmanboo.bluebook.admin.mapper.PostMapper">
+
+    <select id="listVo" resultType="com.winmanboo.bluebook.admin.vo.PostVo">
+        select id, code, name, status
+        from sys_post
+        where tenant_id = #{tenantId}
+    </select>
+    <select id="pageVo" resultType="com.winmanboo.bluebook.admin.vo.PostVo">
+        select id, code, name, status, create_time
+        from sys_post
+        where deleted = 0
+        <if test="post != null and post.code != null and post.code != ''">
+            and code = #{post.code}
+        </if>
+        <if test="post != null and post.name != null and post.name != ''">
+            and name = #{post.name}
+        </if>
+        <if test="post != null and post.status != null">
+            and status = #{post.status}
+        </if>
+    </select>
+</mapper>

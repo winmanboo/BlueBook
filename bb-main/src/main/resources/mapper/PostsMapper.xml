@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.winmanboo.bluebook.main.mapper.PostsMapper">
+
+    <sql id="Vo_Column">
+           id,
+               information,
+               banners,
+               video,
+               subject,
+               type,
+               create_time,
+               update_time,
+               comments_number,
+               likes_number,
+               collects_number,
+               post_uid,
+               province,
+               post_ip,
+               talk_id,
+               site,
+               permission_type,
+               post_type,
+               posted_time,
+               top_comment_id,
+               category_id
+    </sql>
+
+    <select id="pageList" resultType="com.winmanboo.bluebook.main.vo.PostsVO">
+        select
+        <include refid="Vo_Column"/>
+        from posts
+        where category_id = #{categoryId}
+    </select>
+</mapper>

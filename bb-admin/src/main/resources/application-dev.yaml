@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/jiaming?serverTimezone=GMT%2B8&userSSL=false&characterEncoding=utf-8
+    username: root
+    password: mingge123
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  cache:
+    type: redis
+    redis:
+      cache-null-values: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: wzm123
+
+jiaming:
+  tenant:
+    ignore-tables:
+      - oauth2_authorization
+      - oauth2_authorization_consent
+      - oauth2_registered_client
+      - sys_menu
+      - sys_tenant
+      - sys_tenant_package
+  mybatis:
+    base-package: com.winmanboo.bluebook.admin.mapper
+
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: deleted
+      logic-not-delete-value: 0
+      logic-delete-value: 1

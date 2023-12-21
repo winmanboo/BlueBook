@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.winmanboo.bluebook.admin.mapper.UserMapper">
+
+    <resultMap id="userVoMap" type="com.winmanboo.bluebook.admin.vo.UserVo">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="nickname" column="nickname"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="postIds" column="post_ids"/>
+        <result property="email" column="email"/>
+        <result property="mobile" column="mobile"/>
+        <result property="sex" column="sex"/>
+        <result property="avatar" column="avatar"/>
+        <result property="status" column="status"/>
+        <result property="createTime" column="create_time"/>
+        <result property="deptName" column="name"/>
+        <collection property="roleIds" ofType="long">
+            <id property="id" column="role_id"/>
+        </collection>
+    </resultMap>
+
+    <sql id="Vo_Column">
+        su.id,
+        su.username,
+        su.nickname,
+        su.dept_id,
+        su.post_ids,
+        su.email,
+        su.mobile,
+        su.sex,
+        su.avatar,
+        su.status,
+        su.create_time,
+        sd.name as deptName
+    </sql>
+
+    <select id="pageList" resultType="com.winmanboo.bluebook.admin.vo.UserVo">
+        select
+        <include refid="Vo_Column"/>
+        from sys_user su
+        left join sys_dept sd on su.dept_id = sd.id
+        where su.deleted = 0
+        <if test="user.deptId != null">
+            and su.dept_id = #{user.deptId}
+        </if>
+        <if test="user.username != null and user.mobile != ''">
+            and su.username = #{user.username}
+        </if>
+        <if test="user.mobile != null and user.mobile != ''">
+            and su.mobile = #{user.mobile}
+        </if>
+        <if test="user.status != null">
+            and su.status = #{user.status}
+        </if>
+        <if test="user.startTime != null and user.startTime != ''">
+            and su.create_time &gt;= #{user.startTime}
+        </if>
+        <if test="user.endTime != null and user.endTime != ''">
+            and su.create_time &lt;= #{user.endTime}
+        </if>
+    </select>
+    <select id="getUserInfo" resultMap="userVoMap">
+        select distinct
+        <include refid="Vo_Column"/>, sur.role_id
+        from sys_user su
+        left join sys_dept sd on sd.id = su.dept_id
+        left join sys_user_role sur on su.id = sur.user_id
+        where su.id = #{userId}
+    </select>
+    <select id="leaderList" resultType="com.winmanboo.bluebook.admin.vo.UserVo">
+        select id, nickname
+        from sys_user
+        where status = 1
+    </select>
+</mapper>
