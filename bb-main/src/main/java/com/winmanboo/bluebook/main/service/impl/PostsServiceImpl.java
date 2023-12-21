@@ -7,6 +7,7 @@ import com.winmanboo.bluebook.main.entity.Posts;
 import com.winmanboo.bluebook.main.mapper.PostsMapper;
 import com.winmanboo.bluebook.main.service.PostsService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.winmanboo.bluebook.main.vo.PostsDetailsVO;
 import com.winmanboo.bluebook.main.vo.PostsVO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,10 @@ public class PostsServiceImpl extends ServiceImpl<PostsMapper, Posts> implements
     public PageList<PostsVO> pageVoByCategoryId(PageParam pageParam, Long categoryId) {
         IPage<PostsVO> page = baseMapper.pageList(pageParam.toPage(), categoryId);
         return PageList.turnTo(page);
+    }
+
+    @Override
+    public PostsDetailsVO detailsByPostId(Long postId) {
+        return baseMapper.detailsByPostId(postId);
     }
 }

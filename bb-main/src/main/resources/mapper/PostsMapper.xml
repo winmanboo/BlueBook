@@ -32,4 +32,27 @@
         where category_id = #{categoryId}
           and permission_type = 0
     </select>
+    <select id="detailsByPostId" resultType="com.winmanboo.bluebook.main.vo.PostsDetailsVO">
+        select id,
+               information,
+               banners,
+               video,
+               subject,
+               type,
+               comments_number,
+               likes_number,
+               collects_number,
+               post_uid,
+               post_username,
+               post_avatar,
+               province,
+               post_ip,
+               talk_id,
+               site,
+               posted_time,
+               top_comment_id
+        from posts
+        where id = #{postId}
+          and permission_type = 0
+    </select>
 </mapper>

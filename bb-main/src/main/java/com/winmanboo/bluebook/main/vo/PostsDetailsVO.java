@@ -40,6 +40,12 @@ public class PostsDetailsVO {
     @ApiModelProperty("发布人id")
     private Long postUid;
 
+    @ApiModelProperty("发布者用户名")
+    private String postUsername;
+
+    @ApiModelProperty("发布者头像")
+    private String postAvatar;
+
     @ApiModelProperty("省份")
     private String province;
 
@@ -52,18 +58,9 @@ public class PostsDetailsVO {
     @ApiModelProperty("地点")
     private String site;
 
-    @ApiModelProperty("权限类型 0:公开可见 1:仅自己可见")
-    private Integer permissionType;
-
-    @ApiModelProperty("发布类型 0:立即发布 1:定时发布")
-    private Integer postType;
-
     @ApiModelProperty("发布时间（如果发布类型是定时发布需要用户手动传递）")
     private LocalDateTime postedTime;
 
     @ApiModelProperty("置顶评论的id,默认为-1表示没有置顶评论")
     private Long topCommentId;
-
-    @ApiModelProperty("所属类别id")
-    private Long categoryId;
 }

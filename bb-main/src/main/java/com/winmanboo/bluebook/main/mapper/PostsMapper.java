@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.winmanboo.bluebook.main.entity.Posts;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.winmanboo.bluebook.main.vo.PostsDetailsVO;
 import com.winmanboo.bluebook.main.vo.PostsVO;
 import org.apache.ibatis.annotations.Param;
 
@@ -25,4 +26,12 @@ public interface PostsMapper extends BaseMapper<Posts> {
      * @return 帖子分页列表
      */
     IPage<PostsVO> pageList(@Param("page") IPage<PostsVO> page, @Param("categoryId") Long categoryId);
+
+    /**
+     * 根据 postId 查询详情
+     *
+     * @param postId 帖子 id
+     * @return post 详情
+     */
+    PostsDetailsVO detailsByPostId(@Param("postId") Long postId);
 }

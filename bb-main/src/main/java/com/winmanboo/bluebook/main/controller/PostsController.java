@@ -3,6 +3,7 @@ package com.winmanboo.bluebook.main.controller;
 import com.winmanboo.bluebook.base.BaseController;
 import com.winmanboo.bluebook.base.PageList;
 import com.winmanboo.bluebook.base.PageParam;
+import com.winmanboo.bluebook.main.vo.PostsDetailsVO;
 import com.winmanboo.bluebook.result.Result;
 import com.winmanboo.bluebook.main.service.PostsService;
 import com.winmanboo.bluebook.main.vo.PostsVO;
@@ -41,5 +42,15 @@ public class PostsController extends BaseController {
         }
         PageList<PostsVO> pageList = postsService.pageVoByCategoryId(pageParam, categoryId);
         return ok(pageList);
+    }
+
+    @GetMapping("/details/{postId}")
+    @ApiOperation(value = "获取帖子详情", notes = "根据帖子 id 获取详情")
+    public Result<PostsDetailsVO> details(@PathVariable Long postId) {
+        if (Objects.isNull(postId)) {
+            return fail("postId 不能为空");
+        }
+        PostsDetailsVO detailsVO = postsService.detailsByPostId(postId);
+        return ok(detailsVO);
     }
 }
