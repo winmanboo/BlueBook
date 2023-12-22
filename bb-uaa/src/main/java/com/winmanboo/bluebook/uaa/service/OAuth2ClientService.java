@@ -1,7 +1,7 @@
 package com.winmanboo.bluebook.uaa.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.winmanboo.bluebook.api.uaa.OAuth2ClientVo;
+import com.winmanboo.bluebook.api.uaa.vo.OAuth2ClientVo;
 import com.winmanboo.bluebook.api.uaa.dto.OAuth2ClientDTO;
 import com.winmanboo.bluebook.base.PageList;
 import com.winmanboo.bluebook.base.PageParam;

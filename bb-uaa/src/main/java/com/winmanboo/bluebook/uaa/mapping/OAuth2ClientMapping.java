@@ -1,6 +1,6 @@
 package com.winmanboo.bluebook.uaa.mapping;
 
-import com.winmanboo.bluebook.api.uaa.OAuth2ClientVo;
+import com.winmanboo.bluebook.api.uaa.vo.OAuth2ClientVo;
 import com.winmanboo.bluebook.api.uaa.dto.OAuth2ClientDTO;
 import com.winmanboo.bluebook.uaa.entity.OAuth2Client;
 import org.mapstruct.Mapper;

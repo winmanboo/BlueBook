@@ -1,18 +1,17 @@
 package com.winmanboo.bluebook.main.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * <p>
- * 评论表 前端控制器
- * </p>
+ * 回复表 控制器
  *
  * @author winmanboo
- * @since 2023-12-13
+ * @date 2023/12/22 15:02
  */
 @RestController
-@RequestMapping("/main/comments")
-public class CommentsController {
-
+@RequiredArgsConstructor
+@RequestMapping("/main/reply")
+public class ReplyController {
 }

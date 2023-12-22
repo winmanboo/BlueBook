@@ -1,6 +1,6 @@
-package com.winmanboo.bluebook.api.uaa;
+package com.winmanboo.bluebook.api.uaa.vo;
 
-import com.winmanboo.bluebook.api.uaa.entity.TokenSettingVo;
+import com.winmanboo.bluebook.api.uaa.vo.TokenSettingVo;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 

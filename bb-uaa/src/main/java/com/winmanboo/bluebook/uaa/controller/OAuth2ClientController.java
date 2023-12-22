@@ -1,8 +1,8 @@
 package com.winmanboo.bluebook.uaa.controller;
 
-import com.winmanboo.bluebook.api.uaa.OAuth2ClientVo;
+import com.winmanboo.bluebook.api.uaa.vo.OAuth2ClientVo;
 import com.winmanboo.bluebook.api.uaa.dto.OAuth2ClientDTO;
-import com.winmanboo.bluebook.api.uaa.entity.TokenSettingVo;
+import com.winmanboo.bluebook.api.uaa.vo.TokenSettingVo;
 import com.winmanboo.bluebook.base.PageList;
 import com.winmanboo.bluebook.base.PageParam;
 import com.winmanboo.bluebook.result.Result;

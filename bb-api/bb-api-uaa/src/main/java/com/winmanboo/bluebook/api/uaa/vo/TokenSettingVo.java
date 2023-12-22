@@ -1,4 +1,4 @@
-package com.winmanboo.bluebook.api.uaa.entity;
+package com.winmanboo.bluebook.api.uaa.vo;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
