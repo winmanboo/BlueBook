@@ -1,6 +1,6 @@
 spring:
   application:
-    name: jiaming-gateway
+    name: bb-gateway
   cloud:
     nacos:
       discovery:

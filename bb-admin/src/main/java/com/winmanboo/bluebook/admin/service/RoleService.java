@@ -3,7 +3,7 @@ package com.winmanboo.bluebook.admin.service;
 import com.winmanboo.bluebook.admin.dto.RoleDTO;
 import com.winmanboo.bluebook.admin.entity.Role;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.winmanboo.bluebook.admin.vo.RoleVo;
+import com.winmanboo.bluebook.api.admin.vo.RoleVO;
 import com.winmanboo.bluebook.base.PageList;
 import com.winmanboo.bluebook.base.PageParam;
 
@@ -24,14 +24,31 @@ public interface RoleService extends IService<Role> {
      *
      * @param pageParam 页面参数
      * @param roleDTO   角色dto
-     * @return {@link PageList}<{@link RoleVo}>
+     * @return {@link PageList}<{@link RoleVO}>
      */
-    PageList<RoleVo> pageList(PageParam pageParam, RoleDTO roleDTO);
+    PageList<RoleVO> pageList(PageParam pageParam, RoleDTO roleDTO);
 
     /**
      * 角色列表
      *
-     * @return {@link List}<{@link RoleVo}>
+     * @return {@link List}<{@link RoleVO}>
      */
-    List<RoleVo> listVo();
+    List<RoleVO> listVo();
+
+    /**
+     * 查询所有的角色信息
+     *
+     * @param tenantId 租户id
+     * @return 角色列表
+     */
+    List<RoleVO> loadAllRoles(Long tenantId);
+
+    /**
+     * 查询用户的角色信息
+     *
+     * @param userId   用户id
+     * @param tenantId 租户id
+     * @return 角色列表
+     */
+    List<RoleVO> loadRolesByUserIdAndTenantId(Long userId, Long tenantId);
 }

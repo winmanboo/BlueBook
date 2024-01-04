@@ -1,4 +1,4 @@
-package com.winmanboo.bluebook.admin.vo;
+package com.winmanboo.bluebook.api.admin.vo;
 
 import com.winmanboo.bluebook.base.BaseEntity;
 import io.swagger.annotations.ApiModelProperty;
@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class RoleVo extends BaseEntity {
+public class RoleVO extends BaseEntity {
     @ApiModelProperty("角色编号")
     private Long id;
 

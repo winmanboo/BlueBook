@@ -1,18 +1,19 @@
 package com.winmanboo.bluebook.uaa.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.winmanboo.bluebook.uaa.entity.User;
+import com.winmanboo.bluebook.uaa.entity.AuthAccount;
 
 /**
  * @author winmanboo
- * @date 2023/6/1 20:40
+ * @date 2024/1/4 12:49
  */
-public interface UserService extends IService<User> {
+public interface AuthAccountService extends IService<AuthAccount> {
+
     /**
      * 根据用户名查询用户信息
      *
      * @param username 用户名
      * @return 用户信息
      */
-    User loadUserByUsername(String username);
+    AuthAccount loadAccountByUsername(String username);
 }

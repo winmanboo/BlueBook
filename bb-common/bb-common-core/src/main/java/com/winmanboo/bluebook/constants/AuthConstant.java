@@ -24,6 +24,11 @@ public class AuthConstant {
     public static final String AUTHORITY_PREFIX = "ROLE_";
 
     /**
+     * 普通用户权限
+     */
+    public static final String ORDINARY_AUTHORITY = AUTHORITY_PREFIX + "ORDINARY";
+
+    /**
      * 用于 jwt 中存租户id的字段
      */
     public static final String TENANT_CLAIM_NAME = "tenant";

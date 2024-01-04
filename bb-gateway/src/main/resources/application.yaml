@@ -13,7 +13,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://localhost:8080/jiaming/uaa/jwk/publicKey # 本地网关的地址，线上应该为 nginx 的入口地址
+          jwk-set-uri: http://localhost:8080/bb/uaa/jwk/publicKey # 本地网关的地址，线上应该为 nginx 的入口地址
   cloud:
     gateway:
       globalcors:
@@ -37,22 +37,22 @@ spring:
           # 开启服务注册与发现
           enabled: true
       routes:
-        - id: jiaming-admin
-          uri: lb://jiaming-admin
+        - id: bb-admin
+          uri: lb://bb-admin
           predicates:
-            - Path=/jiaming/admin/**
+            - Path=/bb/admin/**
           filters:
-            - RewritePath=/jiaming/?(?<segment>.*), /$\{segment}
+            - RewritePath=/bb/?(?<segment>.*), /$\{segment}
         - id: oauth2-auth
-          uri: lb://jiaming-uaa
+          uri: lb://bb-uaa
           predicates:
-            - Path=/jiaming/uaa/oauth2/**
+            - Path=/bb/uaa/oauth2/**
           filters:
-            - RewritePath=/jiaming/uaa/oauth2/?(?<segment>.*), /oauth2/$\{segment}
-        - id: jiaming-uaa
-          uri: lb://jiaming-uaa
+            - RewritePath=/bb/uaa/oauth2/?(?<segment>.*), /oauth2/$\{segment}
+        - id: bb-uaa
+          uri: lb://bb-uaa
           predicates:
-            - Path=/jiaming/uaa/**
+            - Path=/bb/uaa/**
           filters:
             # 为什么要加这个 PreserveHostHeader Filter？
             # 这个 Filter 的作用就是保留主机头，之所以这么做是因为网关转发 /oauth2/authorize 这个请求时，
@@ -61,7 +61,7 @@ spring:
             # 以及：https://ask.csdn.net/questions/1061712
             # TODO 另外待测试加一层 Nginx
             #            - PreserveHostHeader
-            - RewritePath=/jiaming/?(?<segment>.*), /$\{segment}
+            - RewritePath=/bb/?(?<segment>.*), /$\{segment}
         - id: bb-main
           uri: lb://bb-main
           predicates:
@@ -75,9 +75,9 @@ gateway:
       - /favicon.ico
       #      - /jiaming/uaa/client/redirect_code
       #      - /jiaming/uaa/oauth2/access_token
-      - /jiaming/uaa/oauth2/**
-      - /jiaming/uaa/auth/code
-      - /jiaming/uaa/auth/captcha
+      - /bb/uaa/oauth2/**
+      - /bb/uaa/auth/code
+      - /bb/uaa/auth/captcha
 
 logging:
   level:

@@ -1,4 +1,4 @@
-package com.winmanboo.bluebook.api.uaa;
+package com.winmanboo.bluebook.api.uaa.feign;
 
 import org.springframework.cloud.openfeign.FeignClient;
 

@@ -191,7 +191,8 @@ public class CaptchaAuthenticationProvider implements AuthenticationProvider {
         try {
             authenticate = authenticationManager.authenticate(unauthenticated);
         } catch (AuthenticationException e) {
-            throw new CaptchaAuthenticationException("认证失败");
+            // 认证失败
+            throw new CaptchaAuthenticationException(e.getMessage());
         }
         return authenticate;
     }

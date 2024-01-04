@@ -6,7 +6,7 @@
         id, name, code, status, create_time, remark
     </sql>
 
-    <select id="pageList" resultType="com.winmanboo.bluebook.admin.vo.RoleVo">
+    <select id="pageList" resultType="com.winmanboo.bluebook.api.admin.vo.RoleVO">
         select
         <include refid="Vo_Column"/>
         from sys_role
@@ -27,10 +27,18 @@
             and create_time &lt;= #{role.endTime}
         </if>
     </select>
-    <select id="listVo" resultType="com.winmanboo.bluebook.admin.vo.RoleVo">
+
+    <select id="listVo" resultType="com.winmanboo.bluebook.api.admin.vo.RoleVO">
         select
         <include refid="Vo_Column"/>
         from sys_role
         where deleted = 0
+    </select>
+
+    <select id="loadRolesByUserIdAndTenantId" resultType="com.winmanboo.bluebook.api.admin.vo.RoleVO">
+        select sr.*
+        from sys_role sr
+                 inner join sys_user_role sur on sr.id = sur.role_id and sur.user_id = #{userId}
+        where sr.tenant_id = #{tenantId}
     </select>
 </mapper>

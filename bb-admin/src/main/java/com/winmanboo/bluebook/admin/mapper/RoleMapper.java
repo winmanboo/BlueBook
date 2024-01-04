@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.winmanboo.bluebook.admin.dto.RoleDTO;
 import com.winmanboo.bluebook.admin.entity.Role;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.winmanboo.bluebook.admin.vo.RoleVo;
+import com.winmanboo.bluebook.api.admin.vo.RoleVO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -25,14 +25,23 @@ public interface RoleMapper extends BaseMapper<Role> {
      *
      * @param page    页面
      * @param roleDTO 角色dto
-     * @return {@link IPage}<{@link RoleVo}>
+     * @return {@link IPage}<{@link RoleVO}>
      */
-    IPage<RoleVo> pageList(@Param("page") Page<RoleVo> page, @Param("role") RoleDTO roleDTO);
+    IPage<RoleVO> pageList(@Param("page") Page<RoleVO> page, @Param("role") RoleDTO roleDTO);
 
     /**
      * 角色列表
      *
-     * @return {@link List}<{@link RoleVo}>
+     * @return {@link List}<{@link RoleVO}>
      */
-    List<RoleVo> listVo();
+    List<RoleVO> listVo();
+
+    /**
+     * 根据用户id和租户id查询用户角色信息
+     *
+     * @param userId   用户id
+     * @param tenantId 租户id
+     * @return 角色列表
+     */
+    List<RoleVO> loadRolesByUserIdAndTenantId(@Param("userId") Long userId, @Param("tenantId") Long tenantId);
 }

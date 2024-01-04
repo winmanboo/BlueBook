@@ -1,14 +1,15 @@
 package com.winmanboo.bluebook.uaa.service.impl;
 
+import com.winmanboo.bluebook.api.admin.feign.RoleFeignClient;
+import com.winmanboo.bluebook.api.admin.vo.RoleVO;
+import com.winmanboo.bluebook.constants.AuthConstant;
 import com.winmanboo.bluebook.exception.JiamingException;
-import com.winmanboo.bluebook.uaa.entity.Role;
+import com.winmanboo.bluebook.uaa.constants.SysType;
+import com.winmanboo.bluebook.uaa.entity.AuthAccount;
 import com.winmanboo.bluebook.uaa.entity.SecurityUser;
-import com.winmanboo.bluebook.uaa.entity.User;
-import com.winmanboo.bluebook.uaa.service.RoleService;
-import com.winmanboo.bluebook.uaa.service.UserService;
+import com.winmanboo.bluebook.uaa.service.AuthAccountService;
 import com.winmanboo.bluebook.utils.SystemUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,7 +18,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
 /**
  * @author winmanboo
@@ -26,41 +27,47 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class UaaUserDetailsServiceImpl implements UserDetailsService {
-    private final UserService userService;
 
-    private final RoleService roleService;
+    private final AuthAccountService authAccountService;
+
+    private final RoleFeignClient roleFeignClient;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.loadUserByUsername(username);
+        AuthAccount authAccount = authAccountService.loadAccountByUsername(username);
 
-        if (null == user) {
+        if (Objects.isNull(authAccount)) {
             throw new UsernameNotFoundException("用户不存在");
         }
 
-        if (user.getStatus() == 0) {
+        if (authAccount.getStatus() == 0) {
             throw new JiamingException("用户已被禁用，请联系管理员");
         }
 
-        List<Role> roleList;
+        List<RoleVO> roleList;
 
-        if (SystemUtil.isAdmin(user.getIsAdmin())) { // 如果是管理员
-            roleList = roleService.loadAllRoles(user.getTenantId());
-        } else { // 如果不是管理员
-            roleList = roleService.loadRolesByUserIdAndTenantId(user.getId(), user.getTenantId());
+        // XXX: 理论上管理端要细化为平台端和商家端
+        if (Objects.equals(authAccount.getSysType(), SysType.ADMIN.getValue())) { // 管理端
+            if (SystemUtil.isAdmin(authAccount.getIsAdmin())) {
+                roleList = roleFeignClient.loadAllRoles(authAccount.getTenantId());
+            } else {
+                roleList = roleFeignClient.loadRolesByUserIdAndTenantId(authAccount.getId(), authAccount.getTenantId());
+            }
+        } else { // 普通用户
+            RoleVO ordinaryAuthority = new RoleVO();
+            ordinaryAuthority.setCode(AuthConstant.ORDINARY_AUTHORITY);
+            roleList = Collections.singletonList(ordinaryAuthority);
         }
 
-        List<GrantedAuthority> authorities = roleList == null ? Collections.emptyList() : roleList.stream()
-                .map(Role::getCode)
+        List<SimpleGrantedAuthority> authorities = roleList == null ? Collections.emptyList() : roleList.stream()
+                .map(RoleVO::getCode)
                 .map(SimpleGrantedAuthority::new)
-                .collect(Collectors.toList());
+                .toList();
 
-        // List<GrantedAuthority> authorities = List.of(new SimpleGrantedAuthority("ADMIN"));
-
-        SecurityUser securityUser = new SecurityUser(user.getUsername(), user.getPassword(), authorities);
-        securityUser.setUserId(user.getId());
-        securityUser.setIsAdmin(user.getIsAdmin());
-        securityUser.setTenantId(user.getTenantId());
+        SecurityUser securityUser = new SecurityUser(authAccount.getUsername(), authAccount.getPassword(), authorities);
+        securityUser.setUserId(authAccount.getId());
+        securityUser.setIsAdmin(authAccount.getIsAdmin());
+        securityUser.setTenantId(authAccount.getTenantId());
         return securityUser;
     }
 }

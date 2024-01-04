@@ -6,7 +6,7 @@ import com.winmanboo.bluebook.admin.entity.Role;
 import com.winmanboo.bluebook.admin.mapping.RoleMapping;
 import com.winmanboo.bluebook.admin.service.RoleService;
 import com.winmanboo.bluebook.admin.service.UserRoleService;
-import com.winmanboo.bluebook.admin.vo.RoleVo;
+import com.winmanboo.bluebook.api.admin.vo.RoleVO;
 import com.winmanboo.bluebook.base.PageList;
 import com.winmanboo.bluebook.base.PageParam;
 import com.winmanboo.bluebook.exception.JiamingException;
@@ -40,23 +40,23 @@ public class RoleController {
 
     @GetMapping("/list")
     @ApiOperation(value = "角色列表", notes = "角色列表（不分页）")
-    public Result<List<RoleVo>> list() {
-        List<RoleVo> roleList = roleService.listVo();
+    public Result<List<RoleVO>> list() {
+        List<RoleVO> roleList = roleService.listVo();
         return Result.ok(roleList);
     }
 
     @GetMapping("/page")
     @ApiOperation(value = "角色分页信息", notes = "角色分页信息")
-    public Result<PageList<RoleVo>> page(@Valid PageParam pageParam, RoleDTO roleDTO) {
-        PageList<RoleVo> pageList = roleService.pageList(pageParam, roleDTO);
+    public Result<PageList<RoleVO>> page(@Valid PageParam pageParam, RoleDTO roleDTO) {
+        PageList<RoleVO> pageList = roleService.pageList(pageParam, roleDTO);
         return Result.ok(pageList);
     }
 
     @GetMapping("/info/{roleId}")
     @ApiOperation(value = "角色信息", notes = "根据 id 获取角色")
-    public Result<RoleVo> info(@PathVariable Long roleId) {
+    public Result<RoleVO> info(@PathVariable Long roleId) {
         Role role = roleService.getById(roleId);
-        RoleVo roleVo = roleMapping.toRoleVo(role);
+        RoleVO roleVo = roleMapping.toRoleVo(role);
         return Result.ok(roleVo);
     }
 

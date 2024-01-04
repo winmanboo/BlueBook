@@ -1,6 +1,6 @@
 spring:
   application:
-    name: jiaming-uaa
+    name: bb-uaa
   cloud:
     nacos:
       discovery:
