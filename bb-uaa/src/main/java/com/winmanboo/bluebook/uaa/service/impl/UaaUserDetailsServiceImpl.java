@@ -72,7 +72,7 @@ public class UaaUserDetailsServiceImpl implements UserDetailsService {
                 .toList();
 
         SecurityUser securityUser = new SecurityUser(authAccount.getUsername(), authAccount.getPassword(), authorities);
-        securityUser.setUserId(authAccount.getId());
+        securityUser.setUserId(authAccount.getUserId());
         securityUser.setIsAdmin(authAccount.getIsAdmin());
         securityUser.setTenantId(authAccount.getTenantId());
         return securityUser;
