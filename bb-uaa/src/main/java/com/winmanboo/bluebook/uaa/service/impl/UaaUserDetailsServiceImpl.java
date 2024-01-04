@@ -4,6 +4,7 @@ import com.winmanboo.bluebook.api.admin.feign.RoleFeignClient;
 import com.winmanboo.bluebook.api.admin.vo.RoleVO;
 import com.winmanboo.bluebook.constants.AuthConstant;
 import com.winmanboo.bluebook.exception.JiamingException;
+import com.winmanboo.bluebook.result.Result;
 import com.winmanboo.bluebook.uaa.constants.SysType;
 import com.winmanboo.bluebook.uaa.entity.AuthAccount;
 import com.winmanboo.bluebook.uaa.entity.SecurityUser;
@@ -48,10 +49,16 @@ public class UaaUserDetailsServiceImpl implements UserDetailsService {
 
         // XXX: 理论上管理端要细化为平台端和商家端
         if (Objects.equals(authAccount.getSysType(), SysType.ADMIN.getValue())) { // 管理端
+            Result<List<RoleVO>> result;
             if (SystemUtil.isAdmin(authAccount.getIsAdmin())) {
-                roleList = roleFeignClient.loadAllRoles(authAccount.getTenantId());
+                result = roleFeignClient.loadAllRoles(authAccount.getTenantId());
             } else {
-                roleList = roleFeignClient.loadRolesByUserIdAndTenantId(authAccount.getId(), authAccount.getTenantId());
+                result = roleFeignClient.loadRolesByUserIdAndTenantId(authAccount.getId(), authAccount.getTenantId());
+            }
+            if (result.isSuccess()) {
+                roleList = result.getData();
+            } else {
+                throw new JiamingException(result.getMsg());
             }
         } else { // 普通用户
             RoleVO ordinaryAuthority = new RoleVO();
