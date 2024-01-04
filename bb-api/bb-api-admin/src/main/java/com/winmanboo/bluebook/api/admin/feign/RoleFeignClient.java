@@ -1,6 +1,7 @@
 package com.winmanboo.bluebook.api.admin.feign;
 
 import com.winmanboo.bluebook.api.admin.vo.RoleVO;
+import com.winmanboo.bluebook.result.Result;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +21,7 @@ public interface RoleFeignClient {
      * @return 角色标识 Code 列表
      */
     @GetMapping("/role/all")
-    List<RoleVO> loadAllRoles(@RequestParam("tenantId") Long tenantId);
+    Result<List<RoleVO>> loadAllRoles(@RequestParam("tenantId") Long tenantId);
 
     /**
      * 查询用户的角色标识
@@ -30,5 +31,5 @@ public interface RoleFeignClient {
      * @return 角色标识 Code 列表
      */
     @GetMapping("/role/byUserId")
-    List<RoleVO> loadRolesByUserIdAndTenantId(@RequestParam("userId") Long userId, @RequestParam("tenantId") Long tenantId);
+    Result<List<RoleVO>> loadRolesByUserIdAndTenantId(@RequestParam("userId") Long userId, @RequestParam("tenantId") Long tenantId);
 }
