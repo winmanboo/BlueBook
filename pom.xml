@@ -27,6 +27,7 @@
         <module>bb-api</module>
         <module>bb-main</module>
         <module>bb-api/bb-api-admin</module>
+        <module>bb-api/bb-api-common</module>
     </modules>
 
     <properties>
