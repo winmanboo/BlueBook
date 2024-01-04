@@ -3,10 +3,14 @@ package com.winmanboo.bluebook.api.common.interceptor;
 import com.winmanboo.bluebook.constants.OAuth2Constant;
 import feign.RequestInterceptor;
 import feign.RequestTemplate;
+import jakarta.servlet.Servlet;
+import jakarta.servlet.ServletRequest;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
+import java.util.Objects;
 
 
 /**
@@ -17,14 +21,20 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  */
 @Component
 public class FeignHeaderRequestInterceptor implements RequestInterceptor {
-  @Override
-  public void apply(RequestTemplate template) {
-    String authorizationHeader = getAuthorizationHeader();
-    template.header(OAuth2Constant.AUTHORIZATION_HEADER, authorizationHeader);
-  }
+    @Override
+    public void apply(RequestTemplate template) {
+        String authorizationHeader = getAuthorizationHeader();
+        if (!Objects.isNull(authorizationHeader)) {
+            template.header(OAuth2Constant.AUTHORIZATION_HEADER, authorizationHeader);
+        }
+    }
 
-  private static String getAuthorizationHeader() {
-    HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-    return request.getHeader(OAuth2Constant.AUTHORIZATION_HEADER);
-  }
+    private static String getAuthorizationHeader() {
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if (Objects.isNull(requestAttributes)) {
+            return null;
+        }
+        HttpServletRequest request = requestAttributes.getRequest();
+        return request.getHeader(OAuth2Constant.AUTHORIZATION_HEADER);
+    }
 }

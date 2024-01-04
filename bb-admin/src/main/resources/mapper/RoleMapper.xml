@@ -36,7 +36,7 @@
     </select>
 
     <select id="loadRolesByUserIdAndTenantId" resultType="com.winmanboo.bluebook.api.admin.vo.RoleVO">
-        select sr.*
+        select sr.id, sr.name, sr.code, sr.remark, sr.status, sr.create_time, sr.update_time
         from sys_role sr
                  inner join sys_user_role sur on sr.id = sur.role_id and sur.user_id = #{userId}
         where sr.tenant_id = #{tenantId}

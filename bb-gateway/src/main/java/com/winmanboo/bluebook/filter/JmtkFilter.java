@@ -1,7 +1,6 @@
 package com.winmanboo.bluebook.filter;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.text.AntPathMatcher;
 import com.winmanboo.bluebook.constants.AuthConstant;
 import com.winmanboo.bluebook.constants.Constants;
 import com.winmanboo.bluebook.constants.OAuth2Constant;
@@ -12,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.reactive.ServerHttpRequest;
+import org.springframework.util.AntPathMatcher;
 import org.springframework.web.server.ServerWebExchange;
 import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;

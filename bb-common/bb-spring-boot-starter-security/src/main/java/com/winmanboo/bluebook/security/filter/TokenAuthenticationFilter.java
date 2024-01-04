@@ -48,12 +48,11 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
                 filterChain.doFilter(request, response);
                 UserInfoContext.clear();
             } catch (Exception e) {
-                ResponseUtil.out(response, Result.fail("用户信息获取异常"));
-                return;
+                log.warning("token analyze failed.");
             }
         }
 
-        ResponseUtil.out(response, Result.fail(UserResultStatus.A0306));
+        log.warning("token not exists: " + request.getRequestURI());
     }
 
     private String getToken(HttpServletRequest request) {

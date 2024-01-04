@@ -1,5 +1,6 @@
 package com.winmanboo.bluebook.security.context;
 
+import com.winmanboo.bluebook.exception.JiamingException;
 import com.winmanboo.bluebook.security.domain.UserInfo;
 import lombok.experimental.UtilityClass;
 
@@ -16,7 +17,11 @@ public class UserInfoContext {
     private static final ThreadLocal<UserInfo> USER_INFO_THREAD_LOCAL = new ThreadLocal<>();
 
     public UserInfo get() {
-        return USER_INFO_THREAD_LOCAL.get();
+        UserInfo userInfo = USER_INFO_THREAD_LOCAL.get();
+        if (Objects.isNull(userInfo)) {
+            throw new JiamingException("用户信息异常");
+        }
+        return userInfo;
     }
 
     public void set(UserInfo userInfo) {

@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.io.Serial;
+
 /**
  * @author winmanboo
  * @date 2023/7/15 09:55
@@ -12,6 +14,10 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 public class RoleVO extends BaseEntity {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     @ApiModelProperty("角色编号")
     private Long id;
 

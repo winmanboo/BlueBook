@@ -11,5 +11,5 @@ public class Constants {
     /**
      * oauth2 获取 jwk 信息的端点路径（对应 UAA 服务的 JwkController
      */
-    public static final String OAUTH2_JWK_ENDPOINT = "/jiaming/uaa/jwk/publicKey";
+    public static final String OAUTH2_JWK_ENDPOINT = "/bb/uaa/jwk/publicKey";
 }
